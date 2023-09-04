@@ -42,7 +42,7 @@ def games():
 def game_by_id(id):
     game = Game.query.filter(Game.id == id).first()
 
-    game_dict = game.to_dict()
+    game_dict = game.to_dict() # game to_dict instance being added to the game_dict variable
 
     response = make_response(
         game_dict,

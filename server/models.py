@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy_serializer import SerializerMixin # SerializerMixin adds a to_dict() instance method to all models
 
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
@@ -8,7 +8,7 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
-class Game(db.Model, SerializerMixin):
+class Game(db.Model, SerializerMixin):  # handles the mapping of column names on modules into the dictionary we use to create the json response
     __tablename__ = 'games'
 
     serialize_rules = ('-reviews.game',)
